@@ -17,7 +17,7 @@ class BubbleNormal extends StatelessWidget {
   final double bubbleRadius;
   final bool isSender;
   final Color color;
-  final String text;
+  final Widget text;
   final bool tail;
   final bool sent;
   final bool delivered;
@@ -81,10 +81,9 @@ class BubbleNormal extends StatelessWidget {
             : Container(),
         Container(
           color: Colors.transparent,
-          constraints:
-              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
+          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
             child: Container(
               decoration: BoxDecoration(
                 color: color,
@@ -106,14 +105,8 @@ class BubbleNormal extends StatelessWidget {
               child: Stack(
                 children: <Widget>[
                   Padding(
-                    padding: stateTick
-                        ? EdgeInsets.fromLTRB(12, 6, 28, 6)
-                        : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                    child: Text(
-                      text,
-                      style: textStyle,
-                      textAlign: TextAlign.left,
-                    ),
+                    padding: stateTick ? EdgeInsets.fromLTRB(12, 6, 28, 6) : EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+                    child: text,
                   ),
                   stateIcon != null && stateTick
                       ? Positioned(

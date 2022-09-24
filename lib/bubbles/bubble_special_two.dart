@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class BubbleSpecialTwo extends StatelessWidget {
   final bool isSender;
-  final String text;
+  final Widget text;
   final bool tail;
   final Color color;
   final bool sent;
@@ -69,10 +69,7 @@ class BubbleSpecialTwo extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
         child: CustomPaint(
-          painter: SpecialChatBubbleTwo(
-              color: color,
-              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-              tail: tail),
+          painter: SpecialChatBubbleTwo(color: color, alignment: isSender ? Alignment.topRight : Alignment.topLeft, tail: tail),
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .8,
@@ -84,16 +81,7 @@ class BubbleSpecialTwo extends StatelessWidget {
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
             child: Stack(
               children: <Widget>[
-                Padding(
-                  padding: stateTick
-                      ? EdgeInsets.only(right: 20)
-                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                Padding(padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.symmetric(vertical: 0, horizontal: 0), child: text),
                 stateIcon != null && stateTick
                     ? Positioned(
                         bottom: 0,

@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class BubbleSpecialOne extends StatelessWidget {
   final bool isSender;
-  final String text;
+  final Widget text;
   final bool tail;
   final Color color;
   final bool sent;
@@ -67,12 +67,9 @@ class BubbleSpecialOne extends StatelessWidget {
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: CustomPaint(
-          painter: SpecialChatBubbleOne(
-              color: color,
-              alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-              tail: tail),
+          painter: SpecialChatBubbleOne(color: color, alignment: isSender ? Alignment.topRight : Alignment.topLeft, tail: tail),
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .7,
@@ -84,16 +81,7 @@ class BubbleSpecialOne extends StatelessWidget {
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
             child: Stack(
               children: <Widget>[
-                Padding(
-                  padding: stateTick
-                      ? EdgeInsets.only(right: 20)
-                      : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  child: Text(
-                    text,
-                    style: textStyle,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                Padding(padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.symmetric(vertical: 0, horizontal: 0), child: text),
                 stateIcon != null && stateTick
                     ? Positioned(
                         bottom: 0,
