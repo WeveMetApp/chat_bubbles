@@ -69,7 +69,8 @@ class BubbleSpecialOne extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
         child: CustomPaint(
-          painter: SpecialChatBubbleOne(color: color, alignment: isSender ? Alignment.topRight : Alignment.topLeft, tail: tail),
+          painter: SpecialChatBubbleOne(
+              color: color, alignment: isSender ? Alignment.topRight : Alignment.topLeft, tail: tail),
           child: Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * .7,
@@ -81,7 +82,9 @@ class BubbleSpecialOne extends StatelessWidget {
                 : EdgeInsets.fromLTRB(17, 7, 7, 7),
             child: Stack(
               children: <Widget>[
-                Padding(padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.symmetric(vertical: 0, horizontal: 0), child: text),
+                Padding(
+                    padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                    child: text),
                 stateIcon != null && stateTick
                     ? Positioned(
                         bottom: 0,
@@ -126,7 +129,7 @@ class SpecialChatBubbleOne extends CustomPainter {
             RRect.fromLTRBAndCorners(
               0,
               0,
-              size.width - _x,
+              size.width - _x + .5,
               size.height,
               bottomLeft: Radius.circular(_radius),
               bottomRight: Radius.circular(_radius),
@@ -171,7 +174,7 @@ class SpecialChatBubbleOne extends CustomPainter {
       if (tail) {
         canvas.drawRRect(
             RRect.fromLTRBAndCorners(
-              _x,
+              _x - .5,
               0,
               size.width,
               size.height,
