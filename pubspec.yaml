@@ -3,6 +3,7 @@ description: Flutter chat bubble widgets, similar to Whatsapp and more shapes. E
   chat bubbles.
 version: 1.3.1
 homepage: https://github.com/prahack/chat_bubbles
+publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
