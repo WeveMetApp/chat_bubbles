@@ -18,6 +18,7 @@ class BubbleSpecialOne extends StatelessWidget {
   final bool delivered;
   final bool seen;
   final TextStyle textStyle;
+  final double? width;
 
   const BubbleSpecialOne({
     Key? key,
@@ -32,6 +33,7 @@ class BubbleSpecialOne extends StatelessWidget {
       color: Colors.black87,
       fontSize: 16,
     ),
+    this.width = 0.0,
   }) : super(key: key);
 
   ///chat bubble builder method
@@ -66,36 +68,34 @@ class BubbleSpecialOne extends StatelessWidget {
 
     return Align(
       alignment: isSender ? Alignment.topRight : Alignment.topLeft,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        child: CustomPaint(
-          painter: SpecialChatBubbleOne(
-              color: color, alignment: isSender ? Alignment.topRight : Alignment.topLeft, tail: tail),
-          child: Container(
-            constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * .7,
-            ),
-            margin: isSender
-                ? stateTick
-                    ? EdgeInsets.fromLTRB(7, 7, 14, 7)
-                    : EdgeInsets.fromLTRB(7, 7, 17, 7)
-                : EdgeInsets.fromLTRB(17, 7, 7, 7),
-            child: Stack(
-              children: <Widget>[
-                Padding(
-                    padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                    child: text),
-                stateIcon != null && stateTick
-                    ? Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: stateIcon,
-                      )
-                    : SizedBox(
-                        width: 1,
-                      ),
-              ],
-            ),
+      child: CustomPaint(
+        painter: SpecialChatBubbleOne(
+          color: color,
+          alignment: isSender ? Alignment.topRight : Alignment.topLeft,
+          tail: tail,
+        ),
+        child: Container(
+          constraints: BoxConstraints(
+            maxWidth: width != 0.0 ? width! - 21 : MediaQuery.of(context).size.width * .7,
+          ),
+          margin: isSender
+              ? stateTick
+                  ? EdgeInsets.fromLTRB(7, 7, 14, 7)
+                  : EdgeInsets.fromLTRB(7, 7, 17, 7)
+              : EdgeInsets.fromLTRB(17, 7, 7, 7),
+          child: Stack(
+            children: <Widget>[
+              Padding(padding: stateTick ? EdgeInsets.only(right: 20) : EdgeInsets.zero, child: text),
+              stateIcon != null && stateTick
+                  ? Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: stateIcon,
+                    )
+                  : SizedBox(
+                      width: 1,
+                    ),
+            ],
           ),
         ),
       ),
